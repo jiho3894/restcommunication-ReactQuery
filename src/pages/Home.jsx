@@ -1,5 +1,13 @@
+import Form from "../components/Form";
+import List from "../components/List";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <Form />
+      <List />
+    </>
+  );
 };
 
 export default Home;
