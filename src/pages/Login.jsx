@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "../core/utils/useInput";
 

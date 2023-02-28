@@ -1,13 +1,22 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { usePostLogin } from "../core/api/auth/login";
 import { useInput } from "../core/utils/useInput";
+import { useSweet } from "../core/utils/useSweet";
 
 const Signup = () => {
   const [nickname, setNickName] = useInput();
   const [password, setPassword] = useInput();
   const navigation = useNavigate();
-
+  const { mutateAsync } = usePostLogin();
   const onSubmit = (e) => {
     e.preventDefault();
+    mutateAsync({
+      nickname,
+      password,
+    }).then(() => {
+      useSweet(1000, "success", "로그인 성공");
+    });
   };
 
   return (
