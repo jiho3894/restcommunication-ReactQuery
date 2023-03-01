@@ -1,7 +1,14 @@
+import Layout from "./components/Layout";
+import Router from "./router/router";
+
+import { GlobalStyles } from "./styles/globalStyles";
+
 function App() {
   return (
-    <div>
-    </div>
+    <Layout>
+      <GlobalStyles />
+      <Router />
+    </Layout>
   );
 }
 
