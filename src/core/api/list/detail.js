@@ -8,12 +8,17 @@ export const useGetTodoDetail = (id) => {
 }
 
 export const useDeleteTodo = (id) => {
-  return useMutation([`todos/${id}`], () => deleteTodo(id))
+  return useMutation(async () => {
+    const { data } = await deleteTodo(id)
+    return data
+  })
 }
 
 export const useUpdateTodo = (payload) => {
-
-  return useMutation([`todos/${payload.id}`], () => updateTodo(payload))
+  return useMutation(async () => {
+    const { data } = await updateTodo(payload)
+    return data
+  })
 }
 
 export const getTodo = async (id) => {
