@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
+import { queryClient } from "../../wrapper/ReactQueryWrapper"
 import { baseURL, instance } from "../axios"
 
 export const useGetTodoDetail = (id) => {
@@ -11,6 +12,8 @@ export const useDeleteTodo = (id) => {
   return useMutation(async () => {
     const { data } = await deleteTodo(id)
     return data
+  }, {
+    onSuccess: () => queryClient.invalidateQueries(['todos'])
   })
 }
 
@@ -18,6 +21,8 @@ export const useUpdateTodo = (payload) => {
   return useMutation(async () => {
     const { data } = await updateTodo(payload)
     return data
+  }, {
+    onSuccess: () => queryClient.invalidateQueries(['todos'])
   })
 }
 
