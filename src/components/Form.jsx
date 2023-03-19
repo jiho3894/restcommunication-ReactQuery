@@ -1,14 +1,24 @@
 import React from "react";
 import { useState } from "react";
+import { usePostTodos } from "../core/api/list/todo";
 
 const Form = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { mutateAsync } = usePostTodos();
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    setTitle("");
-    setContent("");
+    try {
+      await mutateAsync({
+        title,
+        content,
+      });
+      setTitle("");
+      setContent("");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

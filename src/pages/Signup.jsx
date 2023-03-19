@@ -9,14 +9,18 @@ const Signup = () => {
   const [password, setPassword] = useInput();
   const navigation = useNavigate();
   const { mutateAsync } = usePostLogin();
-  const onSubmit = (e) => {
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    mutateAsync({
-      nickname,
-      password,
-    }).then(() => {
-      useSweet(1000, "success", "로그인 성공");
-    });
+    try {
+      await mutateAsync({
+        nickname,
+        password,
+      });
+      useSweet(1000, "success", "회원가입 성공");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

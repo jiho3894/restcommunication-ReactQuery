@@ -1,12 +1,14 @@
 import React from "react";
-// import Comment from "./Comment";
+import { useGetTodos } from "../core/api/list/todo";
+import Comment from "./Comment";
 
 const List = () => {
+  const { data: todos, isLoading } = useGetTodos();
   return (
     <ul>
-      {/* {isLoading
+      {isLoading
         ? "Loading..."
-        : todos?.map((todo) => {
+        : todos.map((todo) => {
             console.log(todo);
             return (
               <Comment
@@ -16,7 +18,7 @@ const List = () => {
                 nickname={todo.nickname}
               />
             );
-          })} */}
+          })}
     </ul>
   );
 };
